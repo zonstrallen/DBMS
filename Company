@@ -1,5 +1,3 @@
-EXP – 5 Company Database 
-
 CREATE TABLE DEPARTMENT (DNO VARCHAR2 (20) PRIMARY KEY, DNAME VARCHAR2 (20), MGRSTARTDATE DATE);  
 
  
@@ -13,12 +11,6 @@ ALTER TABLE DEPARTMENT ADD MGRSSN REFERENCES EMPLOYEE (SSN);
  
 
 CREATE TABLE DLOCATION (DLOC VARCHAR2 (20), DNO REFERENCES DEPARTMENT (DNO), PRIMARY KEY (DNO, DLOC)); 
-
- 
-
- 
-
- 
 
  
 
@@ -109,7 +101,7 @@ INSERT INTO PROJECT VALUES (107,„SMARTCITY„,„BANGALORE„,„2„);
 INSERT INTO WORKS_ON VALUES (4, ‗RNSCSE01„, 100); INSERT INTO WORKS_ON VALUES (6, ‗RNSCSE01„, 101); INSERT INTO WORKS_ON VALUES (8, ‗RNSCSE01„, 102); INSERT INTO WORKS_ON VALUES (10, ‗RNSCSE02„, 100); INSERT INTO WORKS_ON VALUES (3, ‗RNSCSE04„, 100); INSERT INTO WORKS_ON VALUES (4, ‗RNSCSE05„, 101); INSERT INTO WORKS_ON VALUES (5, ‗RNSCSE06„, 102); INSERT INTO WORKS_ON VALUES (6, ‗RNSCSE03„, 102); INSERT INTO WORKS_ON VALUES (7, ‗RNSECE01„, 103); INSERT INTO WORKS_ON VALUES (5, ‗RNSACC01„, 104); INSERT INTO WORKS_ON VALUES (6, ‗RNSACC02„, 105); INSERT INTO WORKS_ON VALUES (4, ‗RNSISE01„, 106); INSERT INTO WORKS_ON VALUES (10, ‗RNSIT01„, 107); 
 
  
-QUERIES--------------------------------------------------------
+QUERIES------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1.	Make a list of all project numbers for projects that involve an employee whose last name IS "SCOTT'
 (SELECT DISTINCT P.PNO FROM PROJECT P, DEPARTMENT D, EMPLOYEE E WHERE E.DNO=D.DNO AND D.MGRSSN=E.SSN AND E.LNAME='SCOTT')
 UNION
