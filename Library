@@ -12,7 +12,7 @@ CREATE TABLE CARD ( CARD_NO INT (10) PRIMARY KEY);
 
 CREATE TABLE LIBRARY_PROGRAMME ( PROGRAMME_ID INT (10) PRIMARY KEY, PROGRAMME_NAME VARCHAR (50), ADDRESS VARCHAR (100)); 
 
-INSERSTION 
+INSERSTION-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO BOOK VALUES (1,'DBMS','JAN-2017', 'MCGRAW-HILL'); INSERT INTO BOOK VALUES (2,'ADBMS','JUN-2016','MCGRAW-HILL'); INSERT INTO BOOK VALUES (3, 'CD','SEP-2016','PEARSON'); INSERT INTO BOOK VALUES (4,' ALGORITHMS ','SEP-2015',' MIT'); INSERT INTO BOOK VALUES (5,'OS','MAY-2016','PEARSON'); 
 
@@ -29,3 +29,28 @@ INSERT INTO BOOK_LENDING VALUES ('2017-01-01','2017-06-01', 1, 10, 101); INSERT 
 INSERT INTO CARD VALUES (100); INSERT INTO CARD VALUES (101); INSERT INTO CARD VALUES (102); INSERT INTO CARD VALUES (103); INSERT INTO CARD VALUES (104); 
 
 INSERT INTO LIBRARY_PROGRAMME VALUES (10,'VIJAY NAGAR','MYSURU'); INSERT INTO LIBRARY_PROGRAMME VALUES (11,'VIDYANAGAR','HUBLI'); ; INSERT INTO LIBRARY_PROGRAMME VALUES(12,'KUVEMPUNAGAR','MYSURU'); INSERT INTO LIBRARY_PROGRAMME VALUE(13,'RAJAJINAGAR','BANGALORE'); INSERT INTO LIBRARY_PROGRAMME VALUES (14,'MANIPAL','UDUPI'); 
+
+
+
+QUERIES----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Retrieve details of all books in the library id, title, name of publisher, authors, number of copies in each branch, etc.
+SELECT B.BOOK_ID, B.TITLE, B.PUBLISHER_NAME, A.AUTHOR_NAME, C.NO_OF_COPIES, L.PROGRAMME_ID FROM BOOK B, BOOK_AUTHORS A, BOOK_COPIES C, LIBRARY_PROGRAMME L WHERE B.BOOK_ID=A.BOOK_ID AND B.BOOK_ID=C.BOOK_ID AND L.PROGRAMME_ID=C.PROGRAMME_ID;
+
+
+2. Get the particulars of borrowers who have borrowed more than 3 books, but from Jan 2017 to Jun 2017.
+SELECT CARD_NO FROM BOOK_LENDING WHERE DATE_OUT BETWEEN '2017-01-01'AND '2017-07-01' GROUP BY CARD_NO HAVING COUNT(*)>3;
+
+
+3. Delete a book in BOOK table. Update the contents of other tables to reflect this data manipulation operation.
+DELETE FROM BOOK WHERE BOOK_ID=3;
+
+
+4. Partition the BOOK table based on year of publication. Demonstrate its working with a simple query.
+CREATE VIEW VW_PUBLICATION AS SELECT PUB_YEAR FROM BOOK; SELECT * FROM VW_PUBLICATION
+
+
+5. Create a view of all books and its number of copies that are currently available in the Library.
+CREATE VIEW VW_BOOKS AS SELECT B.BOOK_ID, B.TITLE, C.NO_OF_COPIES FROM BOOK B, BOOK_COPIES C, LIBRARY_PROGRAMME L WHERE B.BOOK_ID=C.BOOK_ID AND C.PROGRAMME_ID=L.PROGRAMME_ID;
+SELECT * FROM VW_BOOKS;
+
